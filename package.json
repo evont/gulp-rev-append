@@ -1,13 +1,12 @@
 {
-	"name": "gulp-rev",
-	"version": "9.0.0",
-	"description": "Static asset revisioning by appending content hash to filenames: unicorn.css => unicorn-d41d8cd98f.css",
+	"name": "gulp-rev-append",
+	"version": "1.0.0",
+	"description": "Static asset revisioning by appending content hash to filenames: unicorn.css => unicorn.css?v=d41d8cd98f",
 	"license": "MIT",
-	"repository": "sindresorhus/gulp-rev",
+	"repository": "evont/gulp-rev-append",
 	"author": {
-		"name": "Sindre Sorhus",
-		"email": "sindresorhus@gmail.com",
-		"url": "sindresorhus.com"
+		"name": "evont",
+		"email": "evontgoh@foxmail.com"
 	},
 	"engines": {
 		"node": ">=6"

@@ -1,1 +1,1 @@
-a new version of gulp rev
+基于[gulp-rev](https://www.npmjs.com/package/gulp-rev) 和 [gulp-rev-collector](https://www.npmjs.com/package/gulp-rev-collector)改造，将hash 值置于文件后，避免生成重复的文件，同时封装rev-collector， 无需安装两个依赖。
