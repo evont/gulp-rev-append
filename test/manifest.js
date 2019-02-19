@@ -91,7 +91,7 @@ test('sorts the rev manifest keys', async t => {
 		revOrigPath: 'unicorn.css'
 	}));
 	stream.end(createFile({
-		path: 'pony.css?v=d41d8cd98f',
+		path: 'pony.css?v=',
 		revOrigPath: 'pony.css'
 	}));
 
@@ -109,20 +109,20 @@ test('respects directories', async t => {
 	stream.write(createFile({
 		cwd: __dirname,
 		base: __dirname,
-		path: path.join(__dirname, 'foo', 'unicorn.css?v=d41d8cd98f'),
+		path: path.join(__dirname, 'foo', 'unicorn.css?v='),
 		revOrigPath: path.join(__dirname, 'foo', 'unicorn.css'),
 		revOrigBase: __dirname,
 		origName: 'unicorn.css',
-		revName: 'unicorn.css?v=d41d8cd98f'
+		revName: 'unicorn.css?v='
 	}));
 	stream.end(createFile({
 		cwd: __dirname,
 		base: __dirname,
-		path: path.join(__dirname, 'bar', 'pony.css?v=d41d8cd98f'),
+		path: path.join(__dirname, 'bar', 'pony.css?v='),
 		revOrigBase: __dirname,
 		revOrigPath: path.join(__dirname, 'bar', 'pony.css'),
 		origName: 'pony.css',
-		revName: 'pony.css?v=d41d8cd98f'
+		revName: 'pony.css?v='
 	}));
 
 	const MANIFEST = {};
@@ -174,20 +174,20 @@ test('uses correct base path for each file', async t => {
 	stream.write(createFile({
 		cwd: 'app/',
 		base: 'app/',
-		path: path.join('app', 'foo', 'scriptfoo.js?v=d41d8cd98f'),
+		path: path.join('app', 'foo', 'scriptfoo.js'),
 		revOrigPath: 'scriptfoo.js'
 	}));
 	stream.end(createFile({
 		cwd: '/',
 		base: 'assets/',
-		path: path.join('/assets', 'bar', 'scriptbar.js?v=d41d8cd98f'),
+		path: path.join('assets', 'bar', 'scriptbar.js'),
 		revOrigPath: 'scriptbar.js'
 	}));
 
 	const MANIFEST = {};
 	MANIFEST['foo/scriptfoo.js'] = 'foo/scriptfoo.js?v=d41d8cd98f';
 	MANIFEST['bar/scriptbar.js'] = 'bar/scriptbar.js?v=d41d8cd98f';
-
+	
 	const file = await data;
 	t.deepEqual(JSON.parse(file.contents.toString()), MANIFEST);
 });
