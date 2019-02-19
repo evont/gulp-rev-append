@@ -1,5 +1,5 @@
 {
-	"name": "gulp-rev-append",
+	"name": "gulp-rev-custom",
 	"version": "1.0.0",
 	"description": "Static asset revisioning by appending content hash to filenames: unicorn.css => unicorn.css?v=d41d8cd98f",
 	"license": "MIT",
@@ -14,9 +14,7 @@
 	"scripts": {
 		"test": "ava"
 	},
-	"files": [
-		"index.js"
-	],
+	"main": "index.js",
 	"keywords": [
 		"gulpplugin",
 		"rev",
