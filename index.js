@@ -14,7 +14,7 @@ function relPath(base, filePath) {
 	filePath = filePath.replace(/\\/g, '/');
 	base = base.replace(/\\/g, '/');
 
-	if (!filePath.startsWith(base)) {
+	if (filePath.indexOf(base) !== 0) {
 		return filePath;
 	}
 
@@ -131,10 +131,10 @@ plugin.manifest = (pth, opts) => {
 			return;
 		}
 
-		const revisionedFile = relPath(path.resolve(file.cwd, file.base), path.resolve(file.cwd, file.path));
+		const revisionedFile = relPath(file.base, file.path);
 		const originalFile = path.join(path.dirname(revisionedFile), path.basename(file.revOrigPath)).replace(/\\/g, '/');
-		transformFilename(file);
-		manifest[originalFile] = `${originalFile}?${opts.revMark}=${file.revHash}`;
+
+		manifest[originalFile] = revisionedFile + '?v=' + file.revHash;
 
 		cb();
 	}, function (cb) {

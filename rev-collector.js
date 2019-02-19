@@ -20,7 +20,7 @@ function _getManifestData(file, opts) {
     let data;
     const ext = path.extname(file.path);
     if (ext === '.json') {
-        const json = {};
+        let json = {};
         try {
             const content = file.contents.toString('utf8');
             if (content) {
@@ -31,7 +31,7 @@ function _getManifestData(file, opts) {
             return;
         }
         if (_.isObject(json)) {
-            const isRev = 1;
+            let isRev = 1;
             Object.keys(json).forEach(function (key) {
                 if (!_.isString(json[key])) {
                     isRev = 0;
@@ -123,7 +123,7 @@ function revCollector(opts) {
             const patterns = [ escPathPattern(key) ];
 
             if (opts.replaceReved) {
-                const patternExt = path.extname(key);
+                let patternExt = path.extname(key);
                 if (patternExt in opts.extMap) {
                     patternExt = '(' + escPathPattern(patternExt) + '|' + escPathPattern(opts.extMap[patternExt]) + ')';
                 } else {
@@ -155,7 +155,7 @@ function revCollector(opts) {
             } else {
                 patterns.forEach(function (pattern) {
                     // without dirReplacements we must leave asset filenames with prefixes in its original state
-                    const prefixDelim = '([\/\\\\\'"';
+                    let prefixDelim = '([\/\\\\\'"';
                     // if dir part in pattern exists, all exsotoic symbols should be correct processed using dirReplacements
                     if (/[\\\\\/]/.test(pattern)) {
                         prefixDelim += '\(=';
@@ -169,7 +169,7 @@ function revCollector(opts) {
                     }
                     prefixDelim += '])';
                     changes.push({
-                        regexp: new RegExp( prefixDelim + pattern, 'g' ),
+                        regexp: new RegExp( prefixDelim + pattern + `(\\?${opts.remark || 'v'}=\\w{10})?`, 'g' ),
                         patternLength: pattern.length,
                         replacement: '$1' + manifest[key]
                     });
@@ -186,7 +186,7 @@ function revCollector(opts) {
         );
         mutables.forEach(function (file){
             if (!file.isNull()) {
-                const src = file.contents.toString('utf8');
+                let src = file.contents.toString('utf8');
                 changes.forEach(function (r) {
                     src = src.replace(r.regexp, r.replacement);
                 });
