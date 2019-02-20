@@ -3,7 +3,7 @@
 	"version": "1.0.2",
 	"description": "Static asset revisioning by appending content hash to filenames: unicorn.css => unicorn.css?v=d41d8cd98f",
 	"license": "MIT",
-	"repository": "evont/gulp-rev-append",
+	"repository": "evont/gulp-rev-custom",
 	"author": {
 		"name": "evont",
 		"email": "evontgoh@foxmail.com"
